@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Monte Carlo Option Price Simulation</title>
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+        }
+        canvas { 
+            display: block; 
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        #visualization-type {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <h2>Option Price Simulation</h2>
+        <div class="control-group">
+            <label for="initialPrice">Initial Price:</label>
+            <input type="number" id="initialPrice" value="100" min="1">
+        </div>
+        <div class="control-group">
+            <label for="strikePrice">Strike Price:</label>
+            <input type="number" id="strikePrice" value="100" min="1">
+        </div>
+        <div class="control-group">
+            <label for="timeToMaturity">Time to Maturity (years):</label>
+            <input type="number" id="timeToMaturity" value="1" min="0.1" max="10" step="0.1">
+        </div>
+        <div class="control-group">
+            <label for="riskFreeRate">Risk-Free Rate:</label>
+            <input type="number" id="riskFreeRate" value="0.05" min="0" max="0.2" step="0.01">
+        </div>
+        <div class="control-group">
+            <label for="numSimulations">Number of Simulations:</label>
+            <input type="number" id="numSimulations" value="1000" min="100" max="10000" step="100">
+        </div>
+        <div class="control-group">
+            <label for="numSteps">Time Steps:</label>
+            <input type="number" id="numSteps" value="252" min="50" max="1000" step="10">
+        </div>
+        <div class="control-group">
+            <label for="optionType">Option Type:</label>
+            <select id="optionType">
+                <option value="call">Call</option>
+                <option value="put">Put</option>
+            </select>
+        </div>
+        <div id="visualization-type">
+            <label><input type="radio" name="vizType" value="particles" checked> Particle System</label>
+            <label><input type="radio" name="vizType" value="surface"> Surface</label>
+        </div>
+        <button id="simulate">Run Simulation</button>
+    </div>
+    
+    <div id="loading">Simulating... Please wait.</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/libs/stats.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
