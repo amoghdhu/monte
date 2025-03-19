@@ -30,3 +30,4 @@ For American options, the Least Squares Monte Carlo method is used to estimate t
 4. http://localhost:5001/
 5. Open `index.html` in a web browser
 
+![Option Price Simulation](images/cover.png)
